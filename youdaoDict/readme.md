@@ -9,6 +9,7 @@ Translate.sh is a shell script which can quickly find the words according to the
 >fi
 >```
 >At this section, I use 'tl' to call the script.
+
 tl help
 tl 帮助
 
