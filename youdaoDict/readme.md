@@ -10,8 +10,10 @@ Translate.sh is a shell script which can quickly find the words according to the
 >```
 >At this section, I use 'tl' to call the script.
 
-tl help
-tl 帮助
+A example of query Chinese by English:  
+tl help  
+A example of query English by Chinese:   
+tl 帮助  
 
 
 
