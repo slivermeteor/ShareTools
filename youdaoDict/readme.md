@@ -1,5 +1,6 @@
 ## Introduction
-Translate.sh is a shell script which can quickly find the words according to the input for English and Chinese.It use the youdao dict page to implemente the function.
+Translate.sh is a shell script which can quickly find the words according to the input for English and Chinese.It use the youdao dict page to implemente the function.  
+At the same time, it will record every valid words you have queried in which named 'record' file.This file is stored in the path which you store the script.
 
 ## Eaxmple
 > First, I suggest you to adding a instruction to call the scripte. You can add the following  code to your **.bashrc**.

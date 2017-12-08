@@ -8,13 +8,24 @@ if [ $# -eq 0 ]; then
 	exit 1;
 fi
 
-# 如果查询的是词组或者句子，将传入的参数拼接到一个变量上
-words="";
-for i in $@; do
-	words="$words%20$i";
-done
-#echo $words 测试
+# 是否是查询单词本 - feture
 
+
+# 如果查询的是词组或者句子，将传入的参数拼接到一个变量上
+#echo $#
+if [ $# -gt "1" ]; then
+	for i in $@; do
+		words="$words%20$i";
+	done
+else
+	words=$1;
+fi
+
+# 测试
+#echo $words 
+
+work_path=$(dirname $(readlink -f $0));
+# 英 -> 中
 # 通过正则裁切网页 得到我们想要的解释部分 写入到文件，准备删除重复部分
 curl -s "http://dict.youdao.com/w/eng/$words" | grep "<li>[^<].*[^>]<\/li>" | sed 's/<li>//g' | sed 's/<\/li>//g' | sed 's/^[ \t]*//g' > /tmp/result.html 
 
@@ -22,7 +33,14 @@ curl -s "http://dict.youdao.com/w/eng/$words" | grep "<li>[^<].*[^>]<\/li>" | se
 if [ -s /tmp/result.html ]; then
 	# 删除重复
 	sort -n /tmp/result.html | awk '{if($0!=line)print; line=$0}';
-
+	
+	# 将查询的单词写入到记录中
+	
+	words=`echo $words | sed 's/%20/ /g' | sed 's/^[ ]*//g'`
+	# 测试
+	#echo $words
+    echo "$(date +%Y/%m/%d-%H:%M) $words" >> "$work_path"/record
+	
 else
 	# 中->英
 	curl -s "http://dict.youdao.com/w/eng/$words" | grep "<a class=\"search.js\" href=\"/w/[a-z ]*/#keyfrom=E2Ctranslation\">" | sed 's/<\/a>//g' | sed 's/<.*>//g' | sed 's/^[ \t]*//g' > /tmp/result.html
