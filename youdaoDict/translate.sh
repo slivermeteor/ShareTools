@@ -8,7 +8,21 @@ if [ $# -eq 0 ]; then
 	exit 1;
 fi
 
+# 所在目录
+work_path=$(dirname $(readlink -f $0));
+#echo $work_path
+
 # 是否是查询单词本 - feture
+case $1 in
+	"-h" | "-histroy") if [ -e $work_path/record ]; then
+					       cat $work_path/record;
+				       else
+						   printf "No record\n";
+					   fi
+		   			   exit 0;;
+	"-c" | "-clear")   rm -r $work_path/record
+		   		       exit 0;
+esac
 
 
 # 如果查询的是词组或者句子，将传入的参数拼接到一个变量上
@@ -24,7 +38,6 @@ fi
 # 测试
 #echo $words 
 
-work_path=$(dirname $(readlink -f $0));
 # 英 -> 中
 # 通过正则裁切网页 得到我们想要的解释部分 写入到文件，准备删除重复部分
 curl -s "http://dict.youdao.com/w/eng/$words" | grep "<li>[^<].*[^>]<\/li>" | sed 's/<li>//g' | sed 's/<\/li>//g' | sed 's/^[ \t]*//g' > /tmp/result.html 

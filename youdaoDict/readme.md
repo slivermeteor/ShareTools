@@ -15,6 +15,9 @@ A example of query Chinese by English:
 tl help  
 A example of query English by Chinese:   
 tl 帮助  
-
+Query the record:  
+tl -h
+Clear the record:  
+tl -c
 
 
