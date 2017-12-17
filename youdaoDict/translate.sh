@@ -56,7 +56,7 @@ if [ -s /tmp/result.html ]; then
 	
 else
 	# 中->英
-	curl -s "http://dict.youdao.com/w/eng/$words" | grep "<a class=\"search.js\" href=\"/w/[a-z ]*/#keyfrom=E2Ctranslation\">" | sed 's/<\/a>//g' | sed 's/<.*>//g' | sed 's/^[ \t]*//g' > /tmp/result.html
+	curl -s "http://dict.youdao.com/w/eng/$words" | grep "<a class=\"search.js\" href=\"/w/.*/#keyfrom=E2Ctranslation\">" | sed 's/<\/a>//g' | sed 's/<.*>//g' | sed 's/^[ \t]*//g' > /tmp/result.html
 
 	if [ -s /tmp/result.html ]; then
 		cat /tmp/result.html
