@@ -125,7 +125,7 @@ else
         }
 
         # 记录结果
-        "$words $(Get-Date -Format y/m/d-H:M:s)" | %{$_ -replace "%20", " "} | %{$_.Trim()} | Out-File -Append "$work_path/record" -Encoding UTF8
+        "$(Get-Date -Format y/m/d-H:M:s) $words" | %{$_ -replace "%20", " "} | %{$_.Trim()} | Out-File -Append "$work_path/record" -Encoding UTF8
     }
 }
 
