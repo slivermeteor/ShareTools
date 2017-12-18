@@ -23,7 +23,7 @@ tl -c
 ## Example in Windows
 >If you want to get a alias for the powershell script, you should create the profile first.
 >Run ```New-Item -Type file -Force $profile``` in any place.Then the profile will be created.
->Then edit the profile, add the ```Set-Alias [new name] [old name]```.For more information to query the [Set-Alias](htpps://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/set-alias?view=powershell-5.1)
+>Then edit the profile, add the ```Set-Alias [new name] [old name]```.For more information to query the [Set-Alias](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/set-alias?view=powershell-5.1)
 
 The case of query is same as the Linux.  
 
