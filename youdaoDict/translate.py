@@ -6,6 +6,7 @@ import argparse
 from html import unescape
 from abc import ABC, abstractmethod
 import requests
+from requests.utils import requote_uri
 
 
 class Trans(ABC):
@@ -27,7 +28,7 @@ class Trans(ABC):
     def do_trans(self, words: str, verbose: bool):
         """ do translate """
         res = requests.get(
-            url=f'https://dict.youdao.com/result?word={words}&lang={self.lang}', timeout=5)
+            url=requote_uri(f'https://dict.youdao.com/result?word={words}&lang={self.lang}'), timeout=5)
 
         if not res.ok:
             print(f'req youdao dict failed! http code: {res.status_code}')
